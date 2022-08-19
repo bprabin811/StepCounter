@@ -88,7 +88,7 @@ class _MyFootStepState extends State<MyFootStep> {
                                     height: 180,
                                     width: 161,              
                                     decoration: BoxDecoration(
-                                      color: const Color.fromARGB(219, 18, 174, 185),
+                                      color: const Color.fromARGB(143, 18, 174, 185),
                                       borderRadius: BorderRadius.circular(10)
                                     ),
                                      child: Column(
@@ -114,7 +114,7 @@ class _MyFootStepState extends State<MyFootStep> {
                                 height: 180,
                                 width: 161,
                                 decoration: BoxDecoration(
-                                      color: const Color.fromARGB(204, 221, 161, 71),
+                                      color: const Color.fromARGB(159, 221, 161, 71),
                                       borderRadius: BorderRadius.circular(10)
                                     ),
                                 child: Column(
@@ -151,7 +151,7 @@ class _MyFootStepState extends State<MyFootStep> {
                                     height: 180,
                                     width: 161,              
                                     decoration: BoxDecoration(
-                                      color: const Color.fromARGB(196, 56, 230, 91),
+                                      color: const Color.fromARGB(166, 56, 230, 91),
                                       borderRadius: BorderRadius.circular(10)
                                     ),
                                      child: Column(
@@ -195,7 +195,7 @@ class _MyFootStepState extends State<MyFootStep> {
                                 height: 180,
                                 width: 161,
                                 decoration: BoxDecoration(
-                                      color: const Color.fromARGB(255, 216, 213, 206),
+                                      color: const Color.fromARGB(190, 216, 213, 206),
                                       borderRadius: BorderRadius.circular(10)
                                     ),
                                 child: Column(
@@ -226,7 +226,7 @@ class _MyFootStepState extends State<MyFootStep> {
                     height: 120,
                     width: 400,
                     decoration: const BoxDecoration(
-                      color: Color.fromARGB(170, 94, 131, 233),
+                      color: Color.fromARGB(131, 94, 131, 233),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                     
