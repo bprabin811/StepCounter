@@ -22,7 +22,7 @@ class _TrackerState extends State<Tracker> {
   //ThemeData myMode=ThemeData.light();
   String myName='There';
   bool isStart=false;
-  Color myColor=Colors.white;
+  Color myColor= const Color.fromARGB(72, 241, 173, 193);
   
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class _TrackerState extends State<Tracker> {
         backgroundColor: myColor,
         appBar: AppBar(
           backgroundColor: myColor,
-          foregroundColor: Colors.grey[500],
+          foregroundColor: Colors.white,
           elevation: 5,
           title:Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,14 +44,14 @@ class _TrackerState extends State<Tracker> {
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),),
-              myColor==Colors.white?IconButton(onPressed: (){
+              myColor==const Color.fromARGB(72, 241, 173, 193)?IconButton(onPressed: (){
             setState(() {
-              myColor=Colors.black;
+              myColor=const Color.fromARGB(123, 0, 0, 0);
             });
           }, icon: const Icon( Icons.dark_mode)):
           IconButton(onPressed: (){
             setState(() {
-              myColor=Colors.white;
+              myColor=const Color.fromARGB(72, 241, 173, 193);
             });
           }, icon: const Icon( Icons.light_mode)),
             ],
