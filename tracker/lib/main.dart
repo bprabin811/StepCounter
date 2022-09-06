@@ -22,10 +22,14 @@ class _TrackerState extends State<Tracker> {
   //ThemeData myMode=ThemeData.light();
   String myName='There';
   bool isStart=false;
-  Color myColor= const Color.fromARGB(72, 241, 173, 193);
+  Color myColor= const Color.fromARGB(102, 116, 154, 200);
+  
   
   @override
   Widget build(BuildContext context) {
+
+    
+    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
      // darkTheme: myMode,
@@ -40,18 +44,18 @@ class _TrackerState extends State<Tracker> {
           title:Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-               const Text(' Tracker',style: TextStyle(
-                fontSize: 30,
+                const Text(' Tracker',style:  TextStyle(
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),),
-              myColor==const Color.fromARGB(72, 241, 173, 193)?IconButton(onPressed: (){
+              myColor==const Color.fromARGB(102, 116, 154, 200)?IconButton(onPressed: (){
             setState(() {
-              myColor=const Color.fromARGB(123, 0, 0, 0);
+              myColor=Color.fromARGB(122, 51, 48, 48);
             });
           }, icon: const Icon( Icons.dark_mode)):
           IconButton(onPressed: (){
             setState(() {
-              myColor=const Color.fromARGB(72, 241, 173, 193);
+              myColor=const Color.fromARGB(102, 116, 154, 200);
             });
           }, icon: const Icon( Icons.light_mode)),
             ],
@@ -75,10 +79,13 @@ class _TrackerState extends State<Tracker> {
                   
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
-                    child: Text("Hello, $myName!!!\nIt's\n${DateFormat.yMMMEd().format(date)}.",style: const TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),),
+                    child: Center(
+                      child: Text("Hello, $myName!!!\nIt's\n${DateFormat.yMMMEd().format(date)}.",style: TextStyle(
+                        fontSize: 25,
+                        //fontWeight: FontWeight.bold,
+                        color: Colors.grey[400]
+                      ),),
+                    ),
                   ),
                 ),
               ),
@@ -101,12 +108,12 @@ class _TrackerState extends State<Tracker> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text("DLTracker",style: TextStyle(
-                        fontSize: 40,
+                        fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: Colors.grey[400]
                       ),),
                       Text("Count your steps.",style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 12,
                         color: Colors.grey[400]
                       ),),
                     ],
@@ -116,13 +123,13 @@ class _TrackerState extends State<Tracker> {
                   padding: const EdgeInsets.only(bottom: 10,right: 10),
                   child: ListTile(
                     subtitle: Text('It counts all step since phone is booted. There are no support of reset pedometer manually. To reset counter restart your device.'
-                    ,style: TextStyle(fontSize: 18,color: Colors.grey[400]),textAlign: TextAlign.justify,),
+                    ,style: TextStyle(wordSpacing: 4,fontSize: 12,color: Colors.grey[400]),textAlign: TextAlign.end,),
                   ),
                 ),
                 ListTile(
                   leading: Icon(Icons.copyright,color: Colors.grey[400],),
                   title: Text('Pro Win'
-                  ,style: TextStyle(fontSize: 18,color: Colors.grey[400]),textAlign: TextAlign.justify,),
+                  ,style: TextStyle(fontSize: 12,color: Colors.grey[400]),textAlign: TextAlign.start,),
                 ),
               ],
             ),

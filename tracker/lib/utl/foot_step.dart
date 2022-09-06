@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:pedometer/pedometer.dart';
 import 'dart:async';
+import 'package:syncfusion_flutter_charts/sparkcharts.dart';
+
 
 String formatDate(DateTime d) {
   return d.toString().substring(0, 18);
@@ -22,20 +24,30 @@ class _MyFootStepState extends State<MyFootStep> {
   DateTime myTime= DateTime.now();
   late Stream<StepCount> _stepCountStream;
   late Stream<PedestrianStatus> _pedestrianStatusStream;
-  String _status = 'Stopped', _steps = '0';
+  String _status = 'Stopped', _steps = '0',_step = '0';
+  List<int> myList=[];
   @override
 
   void initState() {
     super.initState();
     initPlatformState();
   }
+  
 
   void onStepCount(StepCount event) {
     //print(event);
+      setState(() {
+      _step = (event.steps).toString();
+      myList.add(int.parse(_step));
+    });
+    
     setState(() {
       _steps = (event.steps).toString();
     });
   }
+
+
+  
 
   void onPedestrianStatusChanged(PedestrianStatus event) {
     //print(event);
@@ -94,13 +106,13 @@ class _MyFootStepState extends State<MyFootStep> {
                                      child: Column(
                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                        children:  [
-                                        const Text("Steps\nTaken:",style: TextStyle(
+                                          const Text("Steps\nTaken:",style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                           color: Color.fromARGB(161, 0, 0, 0),
                                          ),),
-                                         Text(_steps,style:const TextStyle(
-                                          fontSize: 35,
+                                         Text(_steps,style: const TextStyle(
+                                          fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
                                          ),),
@@ -121,13 +133,13 @@ class _MyFootStepState extends State<MyFootStep> {
                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children:  [
                                 
-                                     const Text("Distance\nCovered:",style: TextStyle(
+                                      const Text("Distance\nCovered:",style: TextStyle(
                                        fontSize: 20,
                                        fontWeight: FontWeight.bold,
                                        color: Color.fromARGB(161, 0, 0, 0),
                                       ),),
-                                      Text(int.parse(_steps)*0.762<1000?'${((int.parse(_steps)*0.762)).toStringAsFixed(2)} m':'${((int.parse(_steps)*0.762)/1000).toStringAsFixed(2)} km',style:const TextStyle(
-                                       fontSize: 35,
+                                      Text(int.parse(_steps)*0.762<1000?'${((int.parse(_steps)*0.762)).toStringAsFixed(2)} m':'${((int.parse(_steps)*0.762)/1000).toStringAsFixed(2)} km',style: const TextStyle(
+                                       fontSize: 20,
                                        fontWeight: FontWeight.bold,
                                        color: Colors.white,
                                       ),),
@@ -157,7 +169,7 @@ class _MyFootStepState extends State<MyFootStep> {
                                      child: Column(
                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                        children:  [
-                                        const Text("Target\nSteps:",style: TextStyle(
+                                         const Text("Target\nSteps:",style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                           color: Color.fromARGB(161, 0, 0, 0),
@@ -170,10 +182,10 @@ class _MyFootStepState extends State<MyFootStep> {
                                           items: items.map((num items) {
                                             return DropdownMenuItem(
                                               value: items,
-                                              child: Text('$items',style:const TextStyle(
-                                                  fontSize: 35,
+                                              child: Text('$items',style: TextStyle(
+                                                  fontSize: 25,
                                                   fontWeight: FontWeight.bold,
-                                                  //color: Colors.grey[300],
+                                                  color: Colors.grey[300],
                                                 ),),
                                             );
                                           }).toList(),
@@ -202,13 +214,13 @@ class _MyFootStepState extends State<MyFootStep> {
                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children:  [
                                 
-                                      const Text("Current\nStatus:",style: TextStyle(
+                                       const Text("Current\nStatus:",style: TextStyle(
                                        fontSize: 20,
                                        fontWeight: FontWeight.bold,
                                        color: Color.fromARGB(161, 0, 0, 0),
                                       ),),
-                                      Text(_status,style:const TextStyle(
-                                      fontSize: 30,
+                                      Text(_status,style: const TextStyle(
+                                      fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),),
@@ -233,7 +245,7 @@ class _MyFootStepState extends State<MyFootStep> {
                      child:Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                        children:  [
-                          const Text("Progress:",style: TextStyle(
+                           const Text("Progress:",style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
                                         color: Color.fromARGB(161, 0, 0, 0),
@@ -252,7 +264,9 @@ class _MyFootStepState extends State<MyFootStep> {
                                 animationDuration: 1000,
                                 width: 220,
                                 lineHeight: 20,
-                                trailing: Text('${((int.parse(_steps)/myTarget)*100).toStringAsFixed(2)}%'),
+                                trailing: Text('${((int.parse(_steps)/myTarget)*100).toStringAsFixed(2)}%',style: const TextStyle(
+                                  fontSize: 10,
+                                ),),
                                 percent: int.parse(_steps)/myTarget<1?int.parse(_steps)/myTarget:1,
                                 progressColor: ((int.parse(_steps)/myTarget)*100>=0.8)?const Color.fromARGB(201, 118, 166, 64):Colors.red,
                                 barRadius: const Radius.circular(10),
@@ -268,6 +282,53 @@ class _MyFootStepState extends State<MyFootStep> {
                      )
                    ),
                  ),
+                //  Padding(
+                //    padding: const EdgeInsets.only(left: 20,right: 20,bottom: 10),
+                //    child: Container(
+                //     height: 300,
+                //     width: 400,
+                //     decoration: const BoxDecoration(
+                //       color: Color.fromARGB(131, 94, 131, 233),
+                //       borderRadius: BorderRadius.all(Radius.circular(10)),
+                //     ),
+                    
+                //      child:Column(
+                //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //        children:  [
+                //            const Text("Today:",style: TextStyle(
+                //                         fontSize: 20,
+                //                         fontWeight: FontWeight.bold,
+                //                         color: Color.fromARGB(161, 0, 0, 0),
+                //                        ),),
+
+                //             Padding(
+                //               padding: const EdgeInsets.all(10.0),
+                //               child: Text('$myList'),
+                              
+                //               // SfSparkLineChart(
+                //               //   marker: const SparkChartMarker(
+                //               //     borderColor: Colors.pink,
+                //               //     color: Colors.pink,
+                //               //     borderWidth: 2,
+                //               //         displayMode: SparkChartMarkerDisplayMode.all),
+                //               //   //Enable data label
+                //               //   labelDisplayMode: SparkChartLabelDisplayMode.all,
+                //               //   trackball: const SparkChartTrackball(),
+                //               //   axisLineColor: Colors.pink,
+                //               //   color: Colors.teal,
+                //               //   data: myList,
+                //               // ),
+                //             )
+                        
+                           
+                        
+                         
+                          
+                         
+                //        ],
+                //      )
+                //    ),
+                //  ),
       ],
     );
   }

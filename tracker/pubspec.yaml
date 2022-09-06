@@ -38,6 +38,7 @@ dependencies:
   intl: ^0.17.0
   pedometer: ^3.0.0
   google_fonts: ^3.0.1
+  syncfusion_flutter_charts: ^20.2.46
   
 dev_dependencies:
   flutter_test:
